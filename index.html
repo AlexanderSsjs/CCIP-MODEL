@@ -1,50 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCIP | Plataforma de Cursos</title>
 
-        <title>CCIP | Plataforma de Cursos</title>
+    <link rel="stylesheet" href="style/styles.css">
 
-        <link rel="stylesheet" href="style/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
 
-        <link
-            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
-            rel="stylesheet"
-        />
-    </head>
+    <div id="header"></div>
+    <main id="home"></main>
+    <div id="footer"></div>
 
-    <body>
-        <div id="header"></div>
-        <div id="home"></div>
-        <div id="footer"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", initApp);
 
-        <script>
-            function loadComponent(id, file) {
-                fetch(file)
-                    .then((res) => res.text())
-                    .then((data) => {
-                        document.getElementById(id).innerHTML = data;
+        async function loadComponent(id, file) {
+            const container = document.getElementById(id);
+            if (!container) return;
 
-                        if (id === 'header') {
-                            initMenu();
-                        }
-                    });
+            try {
+                const response = await fetch(file);
+                if (!response.ok) throw new Error(`Error ${response.status}`);
+                
+                const html = await response.text();
+                container.innerHTML = html;
+
+                // Avisamos al CSS que el componente ya cargó
+                container.classList.add('loaded');
+
+                if (id === "header") initMenu();
+            } catch (error) {
+                console.error(`Error cargando ${file}:`, error);
+                container.innerHTML = `<p style="text-align:center;padding:20px">Error al cargar contenido.</p>`;
             }
+        }
 
-            loadComponent('header', 'header.html');
-            loadComponent('home', 'home.html');
-            loadComponent('footer', 'footer.html');
+        function initMenu() {
+            const hamburger = document.querySelector(".hamburger");
+            const navMenu = document.querySelector(".nav-menu");
+            const navLinks = document.querySelectorAll(".nav-links a");
 
-            function initMenu() {
-                const hamburger = document.querySelector('.hamburger');
-                const navMenu = document.querySelector('.nav-menu');
+            if (!hamburger || !navMenu) return;
 
-                hamburger.addEventListener('click', () => {
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
+            const toggleMenu = () => {
+                hamburger.classList.toggle("active");
+                navMenu.classList.toggle("active");
+                document.body.classList.toggle("menu-open");
+            };
+
+            hamburger.addEventListener("click", toggleMenu);
+
+            navLinks.forEach(link => {
+                link.addEventListener("click", () => {
+                    hamburger.classList.remove("active");
+                    navMenu.classList.remove("active");
+                    document.body.classList.remove("menu-open");
                 });
-            }
-        </script>
-    </body>
+            });
+
+            window.addEventListener("resize", () => {
+                if (window.innerWidth > 992 && navMenu.classList.contains("active")) {
+                    hamburger.classList.remove("active");
+                    navMenu.classList.remove("active");
+                    document.body.classList.remove("menu-open");
+                }
+            });
+        }
+
+        async function initApp() {
+            // Carga secuencial para mejor control, o Promise.all para velocidad
+            await loadComponent("header", "header.html");
+            await loadComponent("home", "home.html");
+            await loadComponent("footer", "footer.html");
+            console.log("Plataforma CCIP lista.");
+        }
+    </script>
+</body>
 </html>
