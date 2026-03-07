@@ -673,15 +673,68 @@ RESPONSIVE AJUSTES
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Responsive */
+/* ======================================================
+    RESPONSIVE: SECCIÓN CONTACTO
+   ====================================================== */
+
+/* Tablets y Laptops pequeñas */
 @media (max-width: 992px) {
+    .contacto-section {
+        padding: 60px 5%; /* Reducimos padding lateral */
+    }
+
     .contacto-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Una sola columna */
+        gap: 30px;
     }
 }
 
+/* Celulares (Pantallas medianas y pequeñas) */
+@media (max-width: 600px) {
+    .contacto-section {
+        padding: 40px 20px;
+    }
+
+    .contacto-header h2 {
+        font-size: 24px; /* Título más acorde al móvil */
+    }
+
+    /* Transformamos las info-cards en vertical para que no se amontone el texto */
+    .info-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 30px 20px;
+    }
+
+    .info-card:hover {
+        transform: translateY(-5px); /* Cambio de dirección del hover en móvil */
+    }
+
+    /* Ajuste de los cuadros extras */
+    .extra-box {
+        padding: 25px 20px;
+        text-align: center;
+    }
+
+    .btn-accent, 
+    .btn-whatsapp {
+        width: 100%; /* Botones de ancho completo para facilitar el clic táctil */
+        text-align: center;
+    }
+}
+
+/* Ajuste para pantallas extra pequeñas (iPhone SE, etc) */
+@media (max-width: 380px) {
+    .info-text p {
+        font-size: 14px; /* Evitamos que los números largos rompan el diseño */
+    }
+}
+
+
+
 /* ======================================================
-   ESTILOS FOOTER ELEGANTE
+ESTILOS FOOTER ELEGANTE
    ====================================================== */
 .main-footer {
     background: #ffffff;
@@ -768,6 +821,145 @@ RESPONSIVE AJUSTES
 /* ======================================================
     RESPONSIVE FOOTER
    ====================================================== */
+   /* ======================================================
+   ESTILOS FOOTER CCIP (Elegancia y Robustez)
+   ====================================================== */
+.main-footer {
+    background: #ffffff;
+    padding: 70px 8% 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: auto;
+}
+
+.footer-grid {
+    display: grid;
+    /* Columnas balanceadas para contenido desigual */
+    grid-template-columns: 1.5fr 1fr 1.2fr 1.2fr; 
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.footer-col h4 {
+    color: var(--text-dark);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+/* Indicador visual de marca */
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 2px;
+    background: var(--primary);
+}
+
+.footer-description {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.footer-stats {
+    margin-top: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 14px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 15px;
+}
+
+.footer-col ul li a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 14px;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+/* Micro-interacción de ingeniería */
+.footer-col ul li a:hover {
+    color: var(--primary);
+    transform: translateX(5px);
+}
+
+.contact-list li a {
+    color: var(--text-dark) !important;
+    font-weight: 600;
+}
+
+.footer-bottom {
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+/* ======================================================
+   UNIFICACIÓN RESPONSIVE (De Tablets a Móviles)
+   ====================================================== */
+
+/* Media Query para Tablets (Hasta 1024px) */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columnas balanceadas */
+    }
+}
+
+/* Media Query para Móviles (Hasta 768px) */
+@media (max-width: 768px) {
+    /* Mantenemos tu ajuste de Navbar aquí para consistencia */
+    .navbar {
+        padding: 0 6%;
+    }
+
+    .nav-menu {
+        width: 80%;
+        max-width: 400px;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Media Query para Móviles Pequeños (Hasta 600px) */
+@media (max-width: 600px) {
+    .main-footer {
+        padding: 50px 20px 30px;
+        text-align: center;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr; /* Una sola columna para evitar apretujamiento */
+        gap: 30px;
+    }
+
+    .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .hero {
+        height: 50vh;
+    }
+}
 @media (max-width: 1024px) {
     .footer-grid {
         grid-template-columns: 1fr 1fr; /* 2 columnas en tablets */
