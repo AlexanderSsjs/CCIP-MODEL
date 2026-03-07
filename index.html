@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>CCIP | Plataforma de Cursos</title>
+
+        <link rel="stylesheet" href="style/styles.css" />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <div id="header"></div>
+        <div id="home"></div>
+        <div id="footer"></div>
+
+        <script>
+            function loadComponent(id, file) {
+                fetch(file)
+                    .then((res) => res.text())
+                    .then((data) => {
+                        document.getElementById(id).innerHTML = data;
+
+                        if (id === 'header') {
+                            initMenu();
+                        }
+                    });
+            }
+
+            loadComponent('header', 'header.html');
+            loadComponent('home', 'home.html');
+            loadComponent('footer', 'footer.html');
+
+            function initMenu() {
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.querySelector('.nav-menu');
+
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
+        </script>
+    </body>
+</html>
