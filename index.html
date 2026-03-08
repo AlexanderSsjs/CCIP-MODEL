@@ -146,6 +146,24 @@ async function initApp() {
         console.error("Error en la carga inicial:", err);
     }
 }
+// NUEVA FUNCIÓN: Maneja los clics en elementos con data-pages
+function setupDynamicNavigation(container) {
+    const links = container.querySelectorAll('[data-pages]');
+    links.forEach(link => {
+        link.addEventListener('click', async (e) => { // Agregamos async aquí
+            e.preventDefault();
+            const targetFile = link.getAttribute('data-pages');
+            
+            // 1. Saltamos arriba INSTANTÁNEAMENTE antes de cargar el contenido
+            window.scrollTo(0, 0); 
+            
+            // 2. Cargamos el nuevo contenido (ahora el usuario ya está arriba)
+            await loadComponent('home', targetFile);
+            
+            // Opcional: console.log('Navegación limpia realizada');
+        });
+    });
+}
         </script>
     </body>
 </html>
