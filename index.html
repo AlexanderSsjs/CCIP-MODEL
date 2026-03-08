@@ -13,9 +13,10 @@
             href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
             rel="stylesheet"
         />
+        <style></style>
     </head>
     <body>
-        <div id="header"></div>
+        <div id="header" id="inicio-section"></div>
         <main id="home"></main>
         <div id="footer"></div>
 
@@ -37,6 +38,9 @@ async function loadComponent(id, file) {
 
         // Solo inicializamos el menú si el header fue el componente cargado
         if (id === 'header') initMenu();
+
+        // --- NUEVO: Escuchamos los clics de navegación en el contenido recién cargado ---
+        setupDynamicNavigation(container);
         
     } catch (error) {
         console.error(`Error cargando ${file}:`, error);
@@ -45,6 +49,21 @@ async function loadComponent(id, file) {
                 Error al cargar contenido.
             </div>`;
     }
+}
+
+// NUEVA FUNCIÓN: Maneja los clics en elementos con data-pages
+function setupDynamicNavigation(container) {
+    const links = container.querySelectorAll('[data-pages]');
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetFile = link.getAttribute('data-pages');
+            // Cargamos el nuevo contenido siempre en el main (#home)
+            loadComponent('home', targetFile);
+            // Scroll al inicio para mejorar la experiencia
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
 }
 
 // 2. Lógica del Menú (Más eficiente)
@@ -56,13 +75,10 @@ function initMenu() {
 
     if (!hamburger || !navMenu) return;
 
-    // Usamos una sola función para manejar el estado
     const toggleState = (isOpen) => {
         hamburger.classList.toggle('active', isOpen);
         navMenu.classList.toggle('active', isOpen);
         body.classList.toggle('menu-open', isOpen);
-        
-        // Accesibilidad: evita que se pueda scrollear el fondo en móviles
         body.style.overflow = isOpen ? 'hidden' : '';
     };
 
@@ -71,13 +87,42 @@ function initMenu() {
         toggleState(!isOpened);
     });
 
-    // Cerrar al hacer clic en un link (importante en Single Page)
     navLinks.forEach(link => {
-        link.addEventListener('click', () => toggleState(false));
+        link.addEventListener('click', async (e) => {
+            const href = link.getAttribute('href');
+
+            // Si el enlace es un ancla (ejemplo: #cursos-section)
+            if (href && href.startsWith('#')) {
+                const targetElement = document.querySelector(href);
+
+                // ESCENARIO: No estamos en Home (ej: estamos en invierte.html)
+                if (!targetElement) {
+                    e.preventDefault(); // Detenemos el salto fallido
+                    toggleState(false); // Cerramos el menú móvil si está abierto
+
+                    console.log("Regresando a la página principal...");
+
+                    // 1. Volvemos a cargar el contenido base de la home
+                    await loadComponent('home', 'home.html');
+
+                    // 2. Esperamos un breve momento para que el DOM se actualice
+                    setTimeout(() => {
+                        const newTarget = document.querySelector(href);
+                        if (newTarget) {
+                            newTarget.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            // Si es el botón de Inicio o no se encuentra, vamos al top
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                    }, 100); 
+                } else {
+                    // Si ya estamos en home, el comportamiento normal del navegador funciona
+                    toggleState(false);
+                }
+            }
+        });
     });
 
-    // Cerrar si se cambia el tamaño de pantalla (evita bugs visuales)
-    // Usamos MatchMedia que es más eficiente que 'resize'
     const mql = window.matchMedia('(min-width: 769px)');
     mql.addEventListener('change', (e) => {
         if (e.matches) toggleState(false);
@@ -86,13 +131,17 @@ function initMenu() {
 
 // 3. Inicialización controlada
 async function initApp() {
-    // Usamos Promise.all para que carguen en paralelo (más rápido)
     try {
         await Promise.all([
             loadComponent('header', 'header.html'),
             loadComponent('home', 'home.html'),
             loadComponent('footer', 'footer.html')
         ]);
+        
+        // También activamos la navegación para cualquier enlace data-pages que esté en el header o footer
+        setupDynamicNavigation(document.getElementById('header'));
+        setupDynamicNavigation(document.getElementById('footer'));
+
         console.log('🚀 Plataforma CCIP: Todos los módulos listos.');
     } catch (err) {
         console.error("Error en la carga inicial:", err);

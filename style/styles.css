@@ -10,7 +10,7 @@
     --accent: #ffb703;
 
     --bg-main: #f8fafc;
-    --bg-dark: #121212;
+    --bg-dark: #0f0e0e;
     --bg-card: #1e1e1e;
 
     --white: #ffffff;
@@ -673,11 +673,8 @@ h1 {
 
 .footer-grid {
     display: grid;
-
     grid-template-columns: repeat(4, 1fr);
-
     gap: 40px;
-
     margin-bottom: 50px;
 }
 
@@ -688,18 +685,29 @@ h1 {
 
     line-height: 1.7;
 }
-.footer-grid h4
-    {
+.footer-grid h4 {
     color: var(--primary);
-    margin-bottom: 10px  ;
+    margin-bottom: 15px; /* Aumenté un poco el margen para que la línea no esté tan pegada al texto */
     font-size: 18px;
-    }
+    position: relative; 
+    display: inline-block; /* Opcional: hace que la línea mida un porcentaje del texto, no de la columna entera */
+}
+.footer-grid h4::after {
+    content: ""; /* Obligatorio para que aparezca */
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Distancia entre el texto y la línea */
+    height: 3px; /* Grosor de la línea */
+    width: 100%; /* Longitud de la línea (ajusta este valor a tu gusto) */
+    background-color: var(--primary); /* Usamos la misma variable de color */
+    border-radius: 2px; /* Opcional: bordes redondeados */
+}
 .footer-col ul li {
     margin-bottom: 10px;
 }
 
 .footer-col ul li a {
-    font-size: 14px;
+    font-size: 12px;
     color: var(--white);
 
 
@@ -719,7 +727,13 @@ h1 {
     font-size: 13px;
     color: var(--text-light);
 }
-
+.footer-stats 
+    {
+    text-align: right;
+    margin-top: 13px;    
+    font-size: 14px;
+    color: var(--white);
+}
 /* ======================================================
 10. RESPONSIVE
 ====================================================== */
@@ -936,16 +950,17 @@ MÓVILES
     }
 
     .footer-grid .footer-stats {
-        font-size: 12px !important;
+        text-align: center !important;
+        font-size: 16px !important;
     }
 
     .footer-grid h4 {
         font-size: 14px !important;
-        margin: 10px 10px !important;
+        margin-bottom: 20px !important;
     }
 
     .footer-grid ul li a {
-        font-size: 12px !important;
+        font-size: 11px !important;
     }
     .footer-bottom {
         font-size: 10px !important;
@@ -992,3 +1007,399 @@ MICRO MOVILES
         }
 
     }
+    
+    /* =========================================
+    INVIERTE.PE-SECTION (FULL OPTIMIZADO)
+   ========================================= */
+:root {
+    --primary-color: #f1c40f;    /* Amarillo */
+    --dark-blue: #1B263B;       /* Azul Profundo */
+    --bg-light: #f4f7f6;
+    --white: #ffffff;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.container-invierte {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.invierte-section {
+    background-color: var(--white);
+    padding: 50px 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+}
+
+/* --- Header --- */
+.invierte-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.invierte-header h2 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    color: var(--dark-blue);
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.badge-container {
+    display: flex;
+    justify-content: center;
+}
+
+.badge {
+    background: var(--primary-color);
+    color: var(--dark-blue);
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 10px rgba(241, 196, 15, 0.3);
+}
+
+/* --- Grid de Contenidos --- */
+.invierte-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.invierte-card {
+    background: var(--bg-light);
+    padding: 35px 25px;
+    border-radius: 16px;
+    transition: var(--transition);
+    border: 2px solid ;
+    border-color: var(--primary-color);
+}
+
+.invierte-card:hover {
+    transform: translateY(-8px);
+    background: var(--white);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-color: var(--primary-color);
+}
+
+.invierte-card .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.invierte-card h3 {
+    color: var(--dark-blue);
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+    font-weight: 700;
+}
+
+.invierte-card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: auto;
+}
+
+.invierte-card ul li {
+    padding: 10px 0;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.4;
+    display: flex;
+    gap: 10px;
+}
+
+.invierte-card ul li::before {
+    content: "➜";
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.format-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.format-tags span {
+    background: var(--dark-blue);
+    color: white;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+/* --- Sección de Pagos (Nueva) --- */
+.payment-methods {
+    margin-top: 60px;
+    padding-top: 50px;
+    border-top: 2px dashed #e2e8f0;
+}
+
+.payment-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.payment-badge {
+    color: var(--dark-blue);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.payment-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+}
+
+.payment-group h4 {
+    color: var(--dark-blue);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment-group h4::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+/* --- Tarjetas de Banco (Ajuste General) --- */
+.bank-card {
+    display: flex;
+    align-items: center; /* Centra verticalmente logo y texto */
+    background: var(--bg-light);
+    padding: 15px 25px; /* Un poco más de aire */
+    border-radius: 12px;
+    margin-bottom: 15px;
+    gap: 20px;
+    border: 1px solid var(--bg-card);
+    transition: var(--transition);
+}
+
+.bank-card:hover {
+    border-color: var(--dark-blue);
+    transform: translateY(-5px); /* Elevación sutil */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* --- NUEVO: Contenedor del Logo --- */
+.bank-logo-wrapper {
+    width: 160px;           /* Ancho fijo para todos */
+    height: 60px;          /* Alto fijo para todos */
+    display: flex;
+    align-items: center;    /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal */
+    background-color: #fff; /* Fondo neutro para resaltar el logo */
+    border-radius: 8px;
+    padding: 8px;           /* Aire interno para que no toquen el borde */
+    flex-shrink: 0;         /* Evita que se encoja en pantallas chicas */
+}
+/* --- Imagen del Logo (Actualizada) --- */
+.logo-bank {
+    width: 100%;
+    height: 100%;
+    transform: scale(2.5);
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+/* Colores específicos según el banco (aplicados al contenedor) */
+.bank-logo-wrapper:has(.bbva) { 
+    background-color: rgb(0, 32, 60); /* Azul BBVA original */
+}
+
+.bank-logo-wrapper:has(.bcp) { 
+    background-color: rgb(6, 69, 115); /* Naranja BCP o el azul que prefieras */
+}
+
+.bank-logo-wrapper:has(.interbank) { 
+    background-color: rgb(5, 161, 18); 
+}
+
+
+/* --- Info de Cuenta (Mantener igual) --- */
+.account-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.8rem;
+    color: var(--text-main);
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.account-number {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    letter-spacing: 0.5px;
+}
+
+/* --- Responsividad --- */
+@media (max-width: 600px) {
+    .bank-card {
+        flex-direction: column; /* Apila logo sobre texto en móvil */
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .bank-logo-wrapper {
+        margin-bottom: 10px;
+    }
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.account-number {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: var(--dark-blue);
+}
+
+/* Responsividad para móviles */
+@media (max-width: 480px) {
+    .bank-card {
+        flex-direction: column; /* Apila el logo sobre el texto */
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .logo-bank-container {
+        margin-bottom: 10px;
+    }
+}
+.account-info .label { 
+    display: block;
+    font-size: 0.75rem; 
+    color: var(--text-muted); 
+    font-weight: 600; 
+}
+
+.account-number {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    letter-spacing: 0.5px;
+}
+
+/* Apps Yape/Plin */
+.mobile-pay-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.app-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+}
+
+.app-card.yape { background: linear-gradient(190deg, #d202fc, #630476 ); }
+.app-card.plin { background: linear-gradient(190deg, #00d2ff, #3a7bd5); }
+
+.app-card img { width: 45px; margin-bottom: 10px; border-radius: 8px; }
+
+.app-number { font-weight: 800; font-size: 1.1rem; display: block; }
+
+.payment-notice {
+    margin-top: 20px;
+    background: #fff9db;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary-color);
+    font-size: 0.85rem;
+    color: #856404;
+}
+
+/* --- CTA Section --- */
+.cta-enrollment {
+    margin-top: 50px;
+    background: var(--dark-blue);
+    border-radius: 16px;
+    padding: 40px;
+    color: white;
+    text-align: center;
+}
+
+.cta-content h3 { font-size: 1.8rem; margin-bottom: 10px; }
+.cta-content p { margin-bottom: 30px; opacity: 0.8; }
+.cta-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.cta-actions span {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.btn-whatsapp {
+    display: inline-block;
+    background-color: #25d366;
+    color: white;
+    padding: 16px 40px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.btn-whatsapp:hover {
+    background-color: #1eb954;
+    transform: scale(1.05);
+}
+.cta-note {
+    font-size: 0.85rem !important;
+    text-align: center;
+    opacity: 0.7 !important;
+}
+
+/* --- Responsividad --- */
+@media (max-width: 992px) {
+    .invierte-grid { grid-template-columns: repeat(2, 1fr); }
+    .payment-container { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .invierte-section { padding: 30px 20px; }
+    .invierte-grid { grid-template-columns: 1fr; }
+    .bank-card { flex-direction: column; text-align: center; padding: 25px; }
+    .mobile-pay-grid { grid-template-columns: 1fr; }
+}
