@@ -1142,6 +1142,10 @@ MICRO MOVILES
 }
 
 .payment-badge {
+<<<<<<< HEAD
+=======
+    color: var(--dark-blue);
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
     font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 1.5px;
@@ -1151,9 +1155,14 @@ MICRO MOVILES
 
 .payment-container {
     display: grid;
+<<<<<<< HEAD
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     align-items: start;
+=======
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
 }
 
 .payment-group h4 {
@@ -1177,15 +1186,25 @@ MICRO MOVILES
     display: flex;
     align-items: center; /* Centra verticalmente logo y texto */
     background: var(--bg-light);
+<<<<<<< HEAD
     border-radius: 12px;
     margin-bottom: 15px;
     border: 1px solid #e2e8f0;
     overflow: hidden; /* ¡ESTO ES VITAL! Corta cualquier desborde del logo */
     transition: all 0.3s ease;
+=======
+    padding: 15px 25px; /* Un poco más de aire */
+    border-radius: 12px;
+    margin-bottom: 15px;
+    gap: 20px;
+    border: 1px solid var(--bg-card);
+    transition: var(--transition);
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
 }
 
 .bank-card:hover {
     border-color: var(--dark-blue);
+<<<<<<< HEAD
     transform: translateY(-4px); /* Elevación sutil */
     box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
@@ -1198,10 +1217,15 @@ div .bbva {
 }
 div .interbank {
     background:rgb(5, 161, 18);
+=======
+    transform: translateY(-5px); /* Elevación sutil */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
 }
 
 /* --- NUEVO: Contenedor del Logo --- */
 .bank-logo-wrapper {
+<<<<<<< HEAD
     width: 130px;           /* Reducido para mejor balance */
     height: 80px;           /* Altura fija controlada */
     display: flex;
@@ -1209,40 +1233,92 @@ div .interbank {
     justify-content: center;
     padding: 12px;
     flex-shrink: 0;
+=======
+    width: 160px;           /* Ancho fijo para todos */
+    height: 60px;          /* Alto fijo para todos */
+    display: flex;
+    align-items: center;    /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal */
+    background-color: #fff; /* Fondo neutro para resaltar el logo */
+    border-radius: 8px;
+    padding: 8px;           /* Aire interno para que no toquen el borde */
+    flex-shrink: 0;         /* Evita que se encoja en pantallas chicas */
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
 }
 /* --- Imagen del Logo (Actualizada) --- */
 .logo-bank {
     width: 100%;
     height: 100%;
+<<<<<<< HEAD
     object-fit: contain;
 }
+=======
+    transform: scale(2.5);
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+/* Colores específicos según el banco (aplicados al contenedor) */
+.bank-logo-wrapper:has(.bbva) { 
+    background-color: rgb(0, 32, 60); /* Azul BBVA original */
+}
+
+.bank-logo-wrapper:has(.bcp) { 
+    background-color: rgb(6, 69, 115); /* Naranja BCP o el azul que prefieras */
+}
+
+.bank-logo-wrapper:has(.interbank) { 
+    background-color: rgb(5, 161, 18); 
+}
+
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
 
 /* --- Info de Cuenta (Mantener igual) --- */
 .account-info {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     gap: 6px;
 }
 
 .account-info .label {
     font-size: 0.8rem;
     color: var(--white) !important;
+=======
+}
+
+.label {
+    font-size: 0.8rem;
+    color: var(--text-main);
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
     font-weight: 600;
     opacity: 0.8;
 }
 
 .account-number {
+<<<<<<< HEAD
     font-family: 'JetBrains Mono', monospace;
     font-size: 1.1rem;
     font-weight: 700;
     letter-spacing: 0.5px;
     color: var(--white) !important;
+=======
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark-blue);
+    letter-spacing: 0.5px;
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
 }
 
 /* --- Responsividad --- */
 @media (max-width: 600px) {
     .bank-card {
+<<<<<<< HEAD
         flex-direction: row;
+=======
+        flex-direction: column; /* Apila logo sobre texto en móvil */
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
         text-align: center;
         padding: 20px;
     }
@@ -1270,7 +1346,22 @@ div .interbank {
     color: var(--dark-blue);
 }
 
+<<<<<<< HEAD
 
+=======
+/* Responsividad para móviles */
+@media (max-width: 480px) {
+    .bank-card {
+        flex-direction: column; /* Apila el logo sobre el texto */
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .logo-bank-container {
+        margin-bottom: 10px;
+    }
+}
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
 .account-info .label { 
     display: block;
     font-size: 0.75rem; 
@@ -1373,6 +1464,7 @@ div .interbank {
 @media (max-width: 768px) {
     .invierte-section { padding: 30px 20px; }
     .invierte-grid { grid-template-columns: 1fr; }
+<<<<<<< HEAD
     .bank-card {
         display: flex;
         flex-direction: column;
@@ -1431,4 +1523,8 @@ div .interbank {
         font-size: 1rem; /* Bajamos un poco el tamaño para que no se rompa en dos líneas */
         word-break: break-all; /* Seguridad extra para números largos */
     }
+=======
+    .bank-card { flex-direction: column; text-align: center; padding: 25px; }
+    .mobile-pay-grid { grid-template-columns: 1fr; }
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
 }

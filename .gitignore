@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 /vendor/
 /node_modules/
 *.zip
 *.log
 .env
 ../../
+=======
+.gradle/
+build/
+>>>>>>> 7b243a8c0283daa49af95096d94dd207dfa51e54
